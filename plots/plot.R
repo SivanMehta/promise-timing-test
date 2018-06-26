@@ -13,4 +13,4 @@ data %>%
   geom_hline(yintercept = 10, linetype = 2) +
   labs(x = "duration in seconds", y = "estimate in seconds")
 
-ggsave('plot.png', height = 3, width = 6)
+ggsave('plots/plot.png', height = 3, width = 6)
