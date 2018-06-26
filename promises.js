@@ -9,7 +9,7 @@ async function complete(i) {
   const left = limit - soFar; // iterations
   var duration = (Date.now() - started) / 1000; // time
   const pace = duration / soFar; // seconds per iteration
-  var eta = pace * left // seconds;
+  var eta = pace * left; // seconds
 
   eta = Math.round(eta * 1000) / 1000;
   duration = Math.round(duration * 1000) / 1000;
@@ -28,5 +28,5 @@ const limit = 20 * 1000;
 let completed = 0;
 let started;
 
-console.log('iteration,eta,duration');
+console.log(`iteration,eta,duration`);
 run();
