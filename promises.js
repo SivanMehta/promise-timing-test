@@ -19,11 +19,14 @@ async function complete(i) {
 
 async function run() {
   const promises = [...Array(limit).keys()].map(complete);
+
+  started = new Date();
   await Promise.all(promises);
 }
 
-const limit = 10000;
+const limit = 20 * 1000;
 let completed = 0;
-const started = new Date();
+let started;
 
+console.log('iteration,eta,duration');
 run();
