@@ -2,8 +2,8 @@ async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function complete(i) {
-  await sleep(Math.random() * 10 * 1000);
+async function complete() {
+  await sleep(1000);
 
   const soFar = ++completed; // iteration
   const left = limit - soFar; // iterations
@@ -18,13 +18,16 @@ async function complete(i) {
 }
 
 async function run() {
-  const promises = [...Array(limit).keys()].map(complete);
-
   started = new Date();
-  await Promise.all(promises);
+  for(let i = 0; i < limit / concurrency; i ++) {
+    const completions = [...Array(concurrency).keys()].map(complete);
+    await Promise.all(completions);
+  }
 }
 
 const limit = 20 * 1000;
+let concurrency = process.argv[2];
+concurrency = +concurrency || 1;
 let completed = 0;
 let started;
 
